@@ -7,9 +7,16 @@ def gen_restaurant_list():
     with open(rest_dir + f, "r") as file:
         line_list = file.readlines()
         rest_list = [item.rstrip() for item in line_list]
+        file.close()
+    for item in line_list:
+        if item[:-1] == "X":
+            line_list.pop(item)
+            print(f"{item} has been removed to previously being picked.")
     return rest_list
 
 def get_restaurant(list):
 
     rand_num = random.randint(0, len(list)-1)
     return f"The restaurant we'll be going to is: {list[rand_num]}"
+
+
